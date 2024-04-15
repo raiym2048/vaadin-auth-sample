@@ -9,6 +9,7 @@ import com.example.application.views.register.RegisterView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
@@ -124,7 +125,14 @@ public class MainLayout extends AppLayout {
             layout.add(userMenu);
         } else {
             Anchor loginLink = new Anchor("login", "Sign in");
-            layout.add(loginLink);
+
+            Button register = new Button("register");
+            register.addClickListener(e -> {
+                getUI().ifPresent(ui -> ui.navigate(RegisterView.class));
+            });
+
+
+            layout.add(loginLink, register);
         }
 
         return layout;
